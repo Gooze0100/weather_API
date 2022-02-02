@@ -1,0 +1,20 @@
+<form class="form">
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Country</mat-label>
+    <input type="text" matInput placeholder="Enter country..." maxlength="30" />
+    <!-- [formControl]="emailFormControl" -->
+    <mat-error
+      *ngIf="
+        emailFormControl.hasError('email') &&
+        !emailFormControl.hasError('required')
+      "
+    >
+      Please enter a valid country
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Country is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<!-- pagalvoti apie validacija su direktyvomis -->
