@@ -8,6 +8,7 @@ import { InputComponent } from './menu/input/input.component';
 import { FormsModule } from '@angular/forms';
 import { SearchedLocationsComponent } from './main/searched-locations/searched-locations.component';
 import { LocationResultsComponent } from './main/location-results/location-results.component';
+import { DefaultComponentComponent } from './default/default.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { LocationResultsComponent } from './main/location-results/location-resul
     InputComponent,
     SearchedLocationsComponent,
     LocationResultsComponent,
+    DefaultComponentComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,14 @@
-<div>
-  <ul *ngFor="let location of data">
-    <li>{{ location.name }}</li>
-  </ul>
+<div class="row">
+  <div class="col-md-4">
+    <div class="list-group">
+      <button
+        class="list-group-item list-group-item-action"
+        *ngFor="let location of allData"
+        [routerLink]="['/location', location.id]"
+        routerLinkActive="active"
+      >
+        {{ location.name }}
+      </button>
+    </div>
+  </div>
 </div>

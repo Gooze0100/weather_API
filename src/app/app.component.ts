@@ -7,8 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'JavaScript internship';
-  countries: Object[] = [];
-  forwardData($event) {
-    this.countries = $event;
-  }
 }

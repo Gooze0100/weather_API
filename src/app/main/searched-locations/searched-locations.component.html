@@ -1,1 +1,65 @@
-<p>searched-locations works!</p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <ul class="list-group">
+        <li *ngFor="let item of currentWeatherData">
+          {{ item.temperature }}
+        </li>
+        <!-- <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          Temperature: {{ item.temperature }}&#8451;
+        </li> -->
+        <!-- <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          feelsLikeTemp:
+          {{ item.feelsLikeTemp }}&#8451;
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          relHumidity:
+          {{ item.relHumidity }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          dewPoint: {{ item.dewPoint }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          windSpeed:
+          {{ item.windSpeed }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          windDir: {{ item.windDir }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          indDirString:
+          {{ item.indDirString }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          windGust: {{ item.windGust }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          precipProb:
+          {{ item.precipProb }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          precipRate: {{ item.precipRate }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          cloudiness:
+          {{ item.cloudiness }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          thunderProb: {{ item.thunderProb }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          uvIndex:
+          {{ item.uvIndex }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          pressure: {{ item.pressure }}
+        </li>
+        <li class="list-group-item" *ngFor="let item of currentWeatherData">
+          visibility:
+          {{ item.visibility }}
+        </li> -->
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6"></div>
+</div>

@@ -1,25 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
-interface Countries {
-  adminArea: string;
-  country: string;
-  id: number;
-  lat: number;
-  lon: number;
-  name: string;
-  timezone: string;
-}
+import { Countries } from '../models/countries.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AvailableLocationsService {
+  public data = new Subject<Object>();
+  // ==========================================
   constructor(private http: HttpClient) {}
 
-  private options = {
-    method: 'GET',
+  private options: Object = {
     params: { lang: 'en' },
     headers: {
       'x-rapidapi-host': 'foreca-weather.p.rapidapi.com',
@@ -34,11 +27,13 @@ export class AvailableLocationsService {
         this.options
       )
       .pipe(
-        map((resData: object) => {
+        map((resData: Object) => {
           const data: Countries[] = [];
           for (const key in resData) {
             for (let i = 0; i < 5; i++) {
-              data.push(resData[key][i]);
+              if (resData[key][i]) {
+                data.push(resData[key][i]);
+              }
             }
             // data.push(...resData[key]);
           }

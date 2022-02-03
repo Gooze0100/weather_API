@@ -13,10 +13,12 @@
           #country="ngModel"
         />
         <button
-          class="btn btn-success"
+          class="btn btn-success me-2"
           type="submit"
           [disabled]="!country.valid"
+          routerLink="location"
         >
+          <!-- su router link kad padarytu tai griztu i ta pati psl su tais paciais rezultatais -->
           Search
         </button>
       </div>
