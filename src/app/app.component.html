@@ -1,5 +1,5 @@
-<app-toolbar></app-toolbar>
-<app-location-results></app-location-results>
+<app-input (results)="forwardData($event)"></app-input>
+<app-location-results [data]="countries"></app-location-results>
 <app-searched-locations></app-searched-locations>
 
 <!-- panaudoti routers  -->

@@ -15,7 +15,8 @@ import { AvailableLocationsService } from 'src/app/services/available-locations.
 })
 export class InputComponent implements OnInit {
   @ViewChild('form') searchForm: NgForm;
-  public results: Object[] = [];
+  public response: Object[] = [];
+  @Output() results = new EventEmitter<{}>();
 
   constructor(private locationServices: AvailableLocationsService) {}
   ngOnInit(): void {}
@@ -25,7 +26,8 @@ export class InputComponent implements OnInit {
       .availableLocations(this.searchForm.value.country)
       .subscribe(
         (res) => {
-          console.log(res);
+          this.response = res;
+          this.results.emit(this.response);
         },
         (err) => {
           console.log(err);

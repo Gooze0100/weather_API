@@ -3,14 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 interface Countries {
-  name: string;
+  adminArea: string;
   country: string;
+  id: number;
+  lat: number;
+  lon: number;
+  name: string;
+  timezone: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AvailableLocationsService {
+  constructor(private http: HttpClient) {}
+
   private options = {
     method: 'GET',
     params: { lang: 'en' },
@@ -20,8 +27,6 @@ export class AvailableLocationsService {
     },
   };
 
-  constructor(private http: HttpClient) {}
-
   availableLocations(location: string) {
     return this.http
       .get(
@@ -29,10 +34,13 @@ export class AvailableLocationsService {
         this.options
       )
       .pipe(
-        map((resData) => {
+        map((resData: object) => {
           const data: Countries[] = [];
           for (const key in resData) {
-            data.push({ ...resData[key], id: key });
+            for (let i = 0; i < 5; i++) {
+              data.push(resData[key][i]);
+            }
+            // data.push(...resData[key]);
           }
           return data;
         })
