@@ -1,20 +1,26 @@
-<form class="form">
-  <mat-form-field class="full-width" appearance="fill">
-    <mat-label>Country</mat-label>
-    <input type="text" matInput placeholder="Enter country..." maxlength="30" />
-    <!-- [formControl]="emailFormControl" -->
-    <mat-error
-      *ngIf="
-        emailFormControl.hasError('email') &&
-        !emailFormControl.hasError('required')
-      "
-    >
-      Please enter a valid country
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Country is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
+<form class="d-flex flex-column" (ngSubmit)="onSubmit()" #form="ngForm">
+  <div class="d-flex flex-row">
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Enter country name"
+      required
+      maxlength="30"
+      ngModel
+      name="country"
+      #country="ngModel"
+    />
+    <button class="btn btn-success" type="submit" [disabled]="!country.valid">
+      Search
+    </button>
+  </div>
+  <div
+    *ngIf="country.invalid && (country.touched || country.dirty)"
+    class="help-block mt-1"
+  >
+    <div *ngIf="country.errors?.['required']">Country is required.</div>
+    <div *ngIf="country.errors?.['maxlength']">
+      Country must be shorter then 30 characters long including spaces.
+    </div>
+  </div>
 </form>
-
-<!-- pagalvoti apie validacija su direktyvomis -->
