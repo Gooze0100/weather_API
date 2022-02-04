@@ -28,7 +28,7 @@ export class LocationResultsService {
       alt: '0',
       tempunit: 'C',
       windunit: 'MS',
-      periods: '7',
+      periods: '8',
       dataset: 'full',
     },
     headers: {
@@ -67,7 +67,9 @@ export class LocationResultsService {
         map((resData: object) => {
           const data: Daily[] = [];
           for (const key in resData) {
-            // console.log(...resData[key]);
+            // padaryti kad pushintu ne nuo siandienos o nuo kitos
+            // console.log(resData[0]);
+
             data.push(...resData[key]);
           }
           return data;

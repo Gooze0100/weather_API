@@ -1,65 +1,34 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="card">
       <ul class="list-group">
-        <li *ngFor="let item of currentWeatherData">
-          {{ item.temperature }}
+        <li *ngFor="let data of currentWeatherData | keyvalue">
+          <b class="uppercase"> {{ data.key }}: </b>
+          {{ data.value }}
         </li>
-        <!-- <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          Temperature: {{ item.temperature }}&#8451;
-        </li> -->
-        <!-- <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          feelsLikeTemp:
-          {{ item.feelsLikeTemp }}&#8451;
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          relHumidity:
-          {{ item.relHumidity }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          dewPoint: {{ item.dewPoint }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          windSpeed:
-          {{ item.windSpeed }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          windDir: {{ item.windDir }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          indDirString:
-          {{ item.indDirString }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          windGust: {{ item.windGust }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          precipProb:
-          {{ item.precipProb }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          precipRate: {{ item.precipRate }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          cloudiness:
-          {{ item.cloudiness }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          thunderProb: {{ item.thunderProb }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          uvIndex:
-          {{ item.uvIndex }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          pressure: {{ item.pressure }}
-        </li>
-        <li class="list-group-item" *ngFor="let item of currentWeatherData">
-          visibility:
-          {{ item.visibility }}
-        </li> -->
       </ul>
     </div>
   </div>
-  <div class="col-md-6"></div>
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-3 card" *ngFor="let data of dailyWeatherData">
+        <img
+          src="https://developer.foreca.com/static/images/symbols/{{
+            data.symbol
+          }}.png"
+          class="card-img-top"
+          alt="{{ data.symbolPhrase }}"
+        />
+        <div class="card-body">
+          <h3 class="card-title">{{ data.date }}</h3>
+          <div class="card-text" *ngFor="let item of data | keyvalue">
+            <b class="uppercase"> {{ item.key }}: </b>
+            {{ item.value }}
+            <!-- TODO pasidaryti kad pridetu parametrus -->
+            <span *ngIf="item.key == 'Temp'"> &#8451; </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

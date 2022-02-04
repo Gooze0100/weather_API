@@ -25,8 +25,10 @@ export class SearchedLocationsComponent implements OnInit {
           // for (const key in res) {
           //   console.log(res[key]);
           // }
-          console.log({ ...res });
-          this.currentWeatherData = [res];
+          // console.log({ ...res });
+          this.currentWeatherData = res;
+          console.log(this.currentWeatherData);
+
           // this.currentWeatherData = [...res];
           // this.time = { ...res };
           // this.currentWeatherData = {
@@ -48,7 +50,8 @@ export class SearchedLocationsComponent implements OnInit {
       .getDaily(this.route.snapshot.params['id'])
       .subscribe(
         (res) => {
-          console.log(res);
+          this.dailyWeatherData = res;
+          // console.log(this.dailyWeatherData);
         },
         (err) => {
           throw new Error(err);
