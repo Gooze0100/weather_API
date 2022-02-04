@@ -68,7 +68,8 @@ export class LocationResultsService {
           const data: Daily[] = [];
           for (const key in resData) {
             // padaryti kad pushintu ne nuo siandienos o nuo kitos
-            // console.log(resData[0]);
+            // 2:10
+            console.log(resData[0]);
 
             data.push(...resData[key]);
           }
