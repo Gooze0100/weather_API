@@ -29,7 +29,7 @@ export class LocationResultsService {
       tempunit: 'C',
       windunit: 'MS',
       periods: '8',
-      dataset: 'full',
+      dataset: 'standard',
     },
     headers: {
       'x-rapidapi-host': 'foreca-weather.p.rapidapi.com',
@@ -69,7 +69,7 @@ export class LocationResultsService {
           for (const key in resData) {
             // padaryti kad pushintu ne nuo siandienos o nuo kitos
             // 2:10
-            console.log(resData[0]);
+            // console.log(resData[0]);
 
             data.push(...resData[key]);
           }

@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 })
 export class AvailableLocationsService {
   public data = new Subject<Object>();
-  // ==========================================
+
   constructor(private http: HttpClient) {}
 
   private options: Object = {

@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchedLocationsComponent } from './main/searched-locations/searched-locations.component';
 import { LocationResultsComponent } from './main/location-results/location-results.component';
 import { DefaultComponentComponent } from './default/default.component';
+import { PageNotFoundComponent } from './default/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { DefaultComponentComponent } from './default/default.component';
     SearchedLocationsComponent,
     LocationResultsComponent,
     DefaultComponentComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
