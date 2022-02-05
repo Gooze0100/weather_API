@@ -15,11 +15,7 @@ export class LogUserService {
       .get(`http://localhost:3000/keywords/save/${keyword}`, {
         headers: headers,
       })
-      .pipe(
-        map((res) => {
-          console.log(res);
-        })
-      );
+      .pipe(map((res) => console.log(res)));
   }
 
   logConditions(condition: string, timestamp: string) {

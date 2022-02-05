@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Countries } from 'src/app/models/countries.model';
 import { AvailableLocationsService } from 'src/app/services/available-locations.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AvailableLocationsService } from 'src/app/services/available-locations.
 })
 export class LocationResultsComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription;
-  public allData: any;
+  public allData: Array<Countries>;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,17 +19,16 @@ export class LocationResultsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.route.root);
-
-    this.dataSubscription = this.availableLocationsService.data.subscribe(
-      (data) => {
-        console.log(data);
-        this.allData = data;
-      },
-      (err) => {
-        throw new Error(err);
-      }
-    );
+    this.dataSubscription = this.availableLocationsService
+      .availableLocations(this.route.snapshot.params['id'])
+      .subscribe(
+        (data) => {
+          this.allData = data;
+        },
+        (err) => {
+          throw new Error(err);
+        }
+      );
   }
 
   ngOnDestroy(): void {

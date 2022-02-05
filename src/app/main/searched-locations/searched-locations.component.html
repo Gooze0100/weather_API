@@ -17,15 +17,15 @@
             data.symbol
           }}.png"
           class="card-img-top"
-          alt="{{ data.symbolPhrase }}"
         />
+        <!-- alt="{{ data.symbolPhrase }}" -->
         <div class="card-body">
           <h3 class="card-title">{{ data.date }}</h3>
           <div class="card-text" *ngFor="let item of data | keyvalue">
             <b class="uppercase"> {{ item.key }}: </b>
             {{ item.value }}
             <!-- TODO pasidaryti kad pridetu parametrus -->
-            <span *ngIf="item.key == 'Temp'"> &#8451; </span>
+            <!-- <span *ngIf="item.key == 'Temp'"> &#8451; </span> -->
           </div>
         </div>
       </div>

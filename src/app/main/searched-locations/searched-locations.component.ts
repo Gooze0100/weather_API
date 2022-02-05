@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Current } from 'src/app/models/curret.model';
+import { Daily } from 'src/app/models/daily.model';
 import { LocationResultsService } from 'src/app/services/location-results.service';
 import { LogUserService } from 'src/app/services/log-user.service';
 
@@ -12,8 +14,9 @@ import { LogUserService } from 'src/app/services/log-user.service';
 export class SearchedLocationsComponent implements OnInit, OnDestroy {
   private currentWeatherDataSubscription: Subscription;
   private dailyWeatherDataSubscription: Subscription;
-  public currentWeatherData: any[] = [];
-  public dailyWeatherData: any[] = [];
+  private logConditionsSubscription: Subscription;
+  public currentWeatherData: Array<Current> = [];
+  public dailyWeatherData: Array<Daily> = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +32,14 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
           this.currentWeatherData = res;
           const data = JSON.stringify(res);
           const timestamp = JSON.stringify(Date.now());
-          this.logUserDataService.logConditions(data, timestamp);
+          this.logConditionsSubscription = this.logUserDataService
+            .logConditions(data, timestamp)
+            .subscribe(
+              () => {},
+              (err) => {
+                throw new Error(err);
+              }
+            );
         },
         (err) => {
           throw new Error(err);
@@ -49,6 +59,7 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.logConditionsSubscription.unsubscribe();
     this.currentWeatherDataSubscription.unsubscribe();
     this.dailyWeatherDataSubscription.unsubscribe();
   }

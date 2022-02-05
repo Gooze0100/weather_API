@@ -11,7 +11,7 @@ const routes: Routes = [
     component: DefaultComponentComponent,
     children: [
       {
-        path: 'locations',
+        path: 'search/:id',
         component: LocationResultsComponent,
       },
       {

@@ -12,16 +12,14 @@
           ngModel
           name="country"
           #country="ngModel"
+          autocomplete="off"
         />
         <button
           class="btn btn-success me-2"
           type="submit"
           [disabled]="!country.valid"
-          [routerLink]="['/locations']"
+          [routerLink]="['/search', country.value]"
         >
-          <!-- [routerLink]="['/locations', country.value]" -->
-          <!-- routerLink="locations" -->
-          <!-- su router link kad padarytu tai griztu i ta pati psl su tais paciais rezultatais -->
           Search
         </button>
       </div>
@@ -29,14 +27,13 @@
         *ngIf="country.invalid && (country.touched || country.dirty)"
         class="help-block mt-1"
       >
-        <div *ngIf="country.errors?.['required']">Country is required.</div>
+        <div *ngIf="country.errors?.['required']">
+          Country field cannot be empty!
+        </div>
         <div *ngIf="country.errors?.['maxlength']">
-          Country must be shorter then 30 characters long including spaces.
+          Country must be shorter then 30 characters long including spaces!
         </div>
       </div>
     </form>
   </div>
 </nav>
-<div class="alert alert-danger" role="alert" *ngIf="alert">
-  {{ text }}
-</div>

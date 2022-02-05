@@ -2,14 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Countries } from '../models/countries.model';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AvailableLocationsService {
-  public data = new Subject<Object>();
-
   constructor(private http: HttpClient) {}
 
   private options: Object = {
@@ -35,7 +32,6 @@ export class AvailableLocationsService {
                 data.push(resData[key][i]);
               }
             }
-            // data.push(...resData[key]);
           }
           return data;
         })
