@@ -1,3 +1,17 @@
 .help-block {
   color: crimson;
 }
+.fixed {
+  position: fixed;
+  width: 100%;
+  transition: 0.2s linear;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+.notFixed {
+  position: static;
+  transition: 0.2s linear;
+  top: -50px;
+}

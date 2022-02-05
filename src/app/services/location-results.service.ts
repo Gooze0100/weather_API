@@ -15,7 +15,8 @@ export class LocationResultsService {
       alt: '0',
       tempunit: 'C',
       windunit: 'MS',
-      tz: 'Europe/London',
+      // TODO: by persons location
+      tz: 'Europe/Vilnius',
       lang: 'en',
     },
     headers: {
@@ -45,12 +46,10 @@ export class LocationResultsService {
       )
       .pipe(
         map((resData: Object) => {
-          let data: Current[] = [];
-          for (const key in resData) {
-            // TODO sutvarkyti kad grazintu normaliai, gal panaudoti for of funkcija
-            // console.log({ ...resData[key] });
-            // data.push({ ...resData[key] });
-            data = { ...resData[key] };
+          const data: Current[] = [];
+          for (const property in resData) {
+            data.push(resData[property]);
+            // console.log(data);
           }
           return data;
         })
@@ -64,15 +63,17 @@ export class LocationResultsService {
         this.optionsDaily
       )
       .pipe(
-        map((resData: object) => {
+        map((resData: Object) => {
           const data: Daily[] = [];
-          for (const key in resData) {
-            // padaryti kad pushintu ne nuo siandienos o nuo kitos
-            // 2:10
-            // console.log(resData[0]);
-
-            data.push(...resData[key]);
+          for (const property in resData) {
+            for (const element of resData[property].slice(1)) {
+              // console.log(element);
+              // TODO padaryti kai duomenys yra gaunami supusti i array with new names tai pvz objekta ir jei tokia reiksme tai priskiti ta reiksme tik kitam key su geru pavadinimu
+              data.push(element);
+            }
           }
+          console.log(data);
+
           return data;
         })
       );

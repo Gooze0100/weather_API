@@ -1,32 +1,138 @@
-<div class="col-md-12">
-  <div class="col-md-4">
-    <div class="card">
-      <ul class="list-group">
-        <li *ngFor="let data of currentWeatherData | keyvalue">
-          <b class="uppercase"> {{ data.key }}: </b>
-          {{ data.value }}
-        </li>
-      </ul>
+<div class="container">
+  <div class="row">
+    <h2 class="pt-4 pb-4">Today's weather</h2>
+    <div class="col-md-6">
+      <div class="flex">
+        <div class="symbol-temp" *ngFor="let item of currentWeatherData">
+          <img
+            src="https://developer.foreca.com/static/images/symbols/{{
+              item.symbol
+            }}.png"
+            class="img-fluid"
+            alt="{{ item.symbolPhrase | uppercase }}"
+          />
+          <h3>Temperature: {{ item.temperature }}&#8451;</h3>
+          <h3>{{ item.time.slice(0, 10) }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="full-table table-responsive">
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Weather condition</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let data of currentWeatherData">
+            <tr>
+              <td>Feels like temperature</td>
+              <td>{{ data.feelsLikeTemp }}&#8451;</td>
+            </tr>
+
+            <tr>
+              <td>Precipitation probability</td>
+              <td>
+                {{ data.precipProb }}
+              </td>
+            </tr>
+            <tr>
+              <td>Precipitation rate</td>
+              <td>
+                {{ data.precipRate }}
+              </td>
+            </tr>
+            <tr>
+              <td>Wind speed</td>
+              <td>{{ data.windSpeed }}m/s</td>
+            </tr>
+            <tr>
+              <td>Wind direction</td>
+              <td>
+                {{ data.windDirString }}
+              </td>
+            </tr>
+            <tr>
+              <td>Wind Gust</td>
+              <td>
+                {{ data.windGust }}
+              </td>
+            </tr>
+            <tr>
+              <td>Humidity</td>
+              <td>
+                {{ data.relHumidity }}
+              </td>
+            </tr>
+            <tr>
+              <td>UVIndex</td>
+              <td>
+                {{ data.uvIndex }}
+              </td>
+            </tr>
+            <tr>
+              <td>Cloudiness</td>
+              <td>
+                {{ data.cloudiness }}
+              </td>
+            </tr>
+            <tr>
+              <td>Thunder probability</td>
+              <td>
+                {{ data.thunderProb }}
+              </td>
+            </tr>
+            <tr>
+              <td>Pressure</td>
+              <td>
+                {{ data.pressure }}
+              </td>
+            </tr>
+            <tr>
+              <td>Visibility</td>
+              <td>
+                {{ data.visibility }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="row">
-      <div class="col-md-3 card" *ngFor="let data of dailyWeatherData">
-        <img
-          src="https://developer.foreca.com/static/images/symbols/{{
-            data.symbol
-          }}.png"
-          class="card-img-top"
-        />
-        <!-- alt="{{ data.symbolPhrase }}" -->
-        <div class="card-body">
-          <h3 class="card-title">{{ data.date }}</h3>
-          <div class="card-text" *ngFor="let item of data | keyvalue">
-            <b class="uppercase"> {{ item.key }}: </b>
-            {{ item.value }}
-            <!-- TODO pasidaryti kad pridetu parametrus -->
-            <!-- <span *ngIf="item.key == 'Temp'"> &#8451; </span> -->
+  <div class="row mt-4">
+    <h2 class="pt-4 pb-4 border-tb">Weather in a week</h2>
+    <!-- TODO ideti kad zodis butu tipo kuri paclikinai -->
+    <div class="col-md-2 mt-4 border-r" *ngFor="let item of dailyWeatherData">
+      <h3 class="text-center">{{ getWeekday(item.date) }}</h3>
+      <img
+        src="https://developer.foreca.com/static/images/symbols/{{
+          item.symbol
+        }}.png"
+        class="img-fluid img-params"
+        alt="Weather symbol"
+      />
+      <div class="seven-days-seven-nights mt-4 text-center">
+        <h3 class="text-center">{{ item.date }}</h3>
+        <div>
+          <div *ngFor="let i = index; let item; of: dailyWeatherData">
+            {{ dailyWeatherData[i].date }}
           </div>
+          <!-- <div *ngFor="let item of dailyWeatherData">
+            Max temperature: {{ item.maxTemp }}&#8451;
+          </div>
+          <div *ngFor="let item of dailyWeatherData">
+            Min temperature: {{ item.minTemp }}&#8451;
+          </div>
+          <div *ngFor="let item of dailyWeatherData">
+            Precipitation accumulation: {{ item.precipAccum }};
+          </div>
+          <div *ngFor="let item of dailyWeatherData">
+            Max wind speed: {{ item.maxWindSpeed }}m/s;
+          </div>
+          <div *ngFor="let item of dailyWeatherData">
+            Wind direction: {{ item.windDir }};
+          </div> -->
         </div>
       </div>
     </div>

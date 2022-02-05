@@ -24,6 +24,21 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
     private logUserDataService: LogUserService
   ) {}
 
+  getWeekday(date: string): string {
+    const weekday = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    const d = new Date(date);
+    const day = weekday[d.getDay()];
+    return day;
+  }
+
   ngOnInit(): void {
     this.currentWeatherDataSubscription = this.locationSearchedService
       .getCurret(this.route.snapshot.params['id'])

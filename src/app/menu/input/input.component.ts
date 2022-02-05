@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LogUserService } from 'src/app/services/log-user.service';
@@ -11,12 +17,20 @@ import { LogUserService } from 'src/app/services/log-user.service';
 export class InputComponent implements OnInit, OnDestroy {
   @ViewChild('form') searchForm: NgForm;
   private logKeywordsSubscription: Subscription;
-
+  public navBarFixed: boolean;
   constructor(private logUserDataService: LogUserService) {}
 
   ngOnInit(): void {}
 
-  onSubmit() {
+  @HostListener('window:scroll', ['$event']) onScroll() {
+    if (window.scrollY > 100) {
+      this.navBarFixed = true;
+    } else {
+      this.navBarFixed = false;
+    }
+  }
+
+  onSubmit(): void {
     if (this.searchForm.valid) {
       if (this.searchForm.value.country !== '') {
         this.logKeywordsSubscription = this.logUserDataService
