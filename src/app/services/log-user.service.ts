@@ -17,7 +17,7 @@ export class LogUserService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http
-      .get(`http://localhost:3000/keywords/save/${keyword}`, {
+      .get(`keywords/save/${keyword}`, {
         headers: headers,
       })
       .pipe(map((res) => console.log(res)));
@@ -33,7 +33,7 @@ export class LogUserService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http
-      .get(`http://localhost:3000/conditions/save/${condition}/${timestamp}`, {
+      .get(`conditions/save/${condition}/${timestamp}`, {
         headers: headers,
       })
       .pipe(map((res) => console.log(res)));
@@ -46,7 +46,7 @@ export class LogUserService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http
-      .get(`http://localhost:3000/keywords`, {
+      .get(`keywords`, {
         headers: headers,
       })
       .pipe(
@@ -63,7 +63,7 @@ export class LogUserService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http
-      .get(`http://localhost:3000/conditions`, {
+      .get(`conditions`, {
         headers: headers,
       })
       .pipe(
