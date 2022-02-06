@@ -16,7 +16,7 @@ import { LogUserService } from 'src/app/services/log-user.service';
 })
 export class InputComponent implements OnInit, OnDestroy {
   @ViewChild('form') searchForm: NgForm;
-  private logKeywordsSubscription: Subscription;
+  protected _logKeywordsSubscription: Subscription;
   public navBarFixed: boolean;
   constructor(private logUserDataService: LogUserService) {}
 
@@ -38,7 +38,7 @@ export class InputComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.searchForm.valid) {
       if (this.searchForm.value.country !== '') {
-        this.logKeywordsSubscription = this.logUserDataService
+        this._logKeywordsSubscription = this.logUserDataService
           .logKeywords(this.searchForm.value.country)
           .subscribe(
             () => {},
@@ -52,6 +52,6 @@ export class InputComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.logKeywordsSubscription.unsubscribe();
+    this._logKeywordsSubscription.unsubscribe();
   }
 }

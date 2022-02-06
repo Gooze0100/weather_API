@@ -8,9 +8,9 @@ import { Daily } from '../models/daily.model';
   providedIn: 'root',
 })
 export class LocationResultsService {
-  constructor(private http: HttpClient) {}
+  constructor(protected http: HttpClient) {}
 
-  private optionsCurrent: Object = {
+  protected optionsCurrent: Object = {
     params: {
       alt: '0',
       tempunit: 'C',
@@ -22,7 +22,7 @@ export class LocationResultsService {
       'x-rapidapi-key': 'b0e243c22amsh47a6ae9176f0277p1f9d4bjsn1e99c968a794',
     },
   };
-  private optionsDaily: Object = {
+  protected optionsDaily: Object = {
     params: {
       alt: '0',
       tempunit: 'C',

@@ -12,15 +12,15 @@ import { LogUserService } from 'src/app/services/log-user.service';
   styleUrls: ['./searched-locations.component.scss'],
 })
 export class SearchedLocationsComponent implements OnInit, OnDestroy {
-  private currentWeatherDataSubscription: Subscription;
-  private dailyWeatherDataSubscription: Subscription;
-  private logConditionsSubscription: Subscription;
+  protected _currentWeatherDataSubscription: Subscription;
+  protected _dailyWeatherDataSubscription: Subscription;
+  protected _logConditionsSubscription: Subscription;
   public currentWeatherData: Array<Current> = [];
   public dailyWeatherData: Array<Daily> = [];
   public locationName: string = '';
 
   constructor(
-    private route: ActivatedRoute,
+    protected route: ActivatedRoute,
     private locationSearchedService: LocationResultsService,
     private logUserDataService: LogUserService
   ) {}
@@ -45,7 +45,7 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.currentWeatherDataSubscription = this.locationSearchedService
+    this._currentWeatherDataSubscription = this.locationSearchedService
       .getCurret(this.route.snapshot.params['id'])
       .subscribe(
         (res) => {
@@ -53,7 +53,7 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
           this.locationName = this.route.snapshot.params['name'];
           const data = JSON.stringify(res);
           const timestamp = JSON.stringify(Date.now());
-          this.logConditionsSubscription = this.logUserDataService
+          this._logConditionsSubscription = this.logUserDataService
             .logConditions(data, timestamp)
             .subscribe(
               () => {},
@@ -67,7 +67,7 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
         }
       );
 
-    this.dailyWeatherDataSubscription = this.locationSearchedService
+    this._dailyWeatherDataSubscription = this.locationSearchedService
       .getDaily(this.route.snapshot.params['id'])
       .subscribe(
         (res) => {
@@ -80,8 +80,8 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.logConditionsSubscription.unsubscribe();
-    this.currentWeatherDataSubscription.unsubscribe();
-    this.dailyWeatherDataSubscription.unsubscribe();
+    this._logConditionsSubscription.unsubscribe();
+    this._currentWeatherDataSubscription.unsubscribe();
+    this._dailyWeatherDataSubscription.unsubscribe();
   }
 }

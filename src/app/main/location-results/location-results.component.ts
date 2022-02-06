@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { Countries } from 'src/app/models/countries.model';
 import { AvailableLocationsService } from 'src/app/services/available-locations.service';
 
@@ -10,20 +10,20 @@ import { AvailableLocationsService } from 'src/app/services/available-locations.
   styleUrls: ['./location-results.component.scss'],
 })
 export class LocationResultsComponent implements OnInit, OnDestroy {
-  private dataSubscription: Subscription;
-  private routeChangeSubscription: Subscription;
+  protected _dataSubscription: Subscription;
+  protected _routeChangeSubscription: Subscription;
   public allData: Array<Countries>;
   public title: string = '';
   public locationsFound: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private availableLocationsService: AvailableLocationsService
+    protected _route: ActivatedRoute,
+    protected availableLocationsService: AvailableLocationsService
   ) {}
 
   ngOnInit(): void {
-    this.routeChangeSubscription = this.route.params.subscribe((params) =>
-      this.handleRouteChange(params)
+    this._routeChangeSubscription = this._route.params.subscribe(
+      (params: Observable<Params>) => this._routeChangeHandler(params)
     );
   }
 
@@ -31,8 +31,8 @@ export class LocationResultsComponent implements OnInit, OnDestroy {
    * @param {string} params gives number to specific locations by id.
    * Using subscription to get data from availableLocationsService, changing locationFound:boolean and title text.
    */
-  handleRouteChange(params) {
-    this.dataSubscription = this.availableLocationsService
+  _routeChangeHandler(params: Observable<Params>) {
+    this._dataSubscription = this.availableLocationsService
       .availableLocations(params['id'])
       .subscribe(
         (data) => {
@@ -52,7 +52,7 @@ export class LocationResultsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dataSubscription.unsubscribe();
-    this.routeChangeSubscription.unsubscribe();
+    this._dataSubscription.unsubscribe();
+    this._routeChangeSubscription.unsubscribe();
   }
 }

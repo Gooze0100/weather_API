@@ -7,9 +7,9 @@ import { Countries } from '../models/countries.model';
   providedIn: 'root',
 })
 export class AvailableLocationsService {
-  constructor(private http: HttpClient) {}
+  constructor(protected http: HttpClient) {}
 
-  private options: Object = {
+  protected options: Object = {
     params: { lang: 'en' },
     headers: {
       'x-rapidapi-host': 'foreca-weather.p.rapidapi.com',
