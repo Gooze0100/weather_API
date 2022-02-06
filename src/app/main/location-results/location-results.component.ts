@@ -11,8 +11,10 @@ import { AvailableLocationsService } from 'src/app/services/available-locations.
 })
 export class LocationResultsComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription;
+  private routeChangeSubscription: Subscription;
   public allData: Array<Countries>;
-  public title: boolean = false;
+  public title: string = '';
+  public locationsFound: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,15 +22,23 @@ export class LocationResultsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.routeChangeSubscription = this.route.params.subscribe((params) =>
+      this.handleRouteChange(params)
+    );
+  }
+
+  handleRouteChange(params) {
     this.dataSubscription = this.availableLocationsService
-      .availableLocations(this.route.snapshot.params['id'])
+      .availableLocations(params['id'])
       .subscribe(
         (data) => {
           if (data.length > 0) {
-            this.title = true;
             this.allData = data;
+            this.locationsFound = true;
+            this.title = 'Locations found:';
           } else {
-            this.title = false;
+            this.locationsFound = false;
+            this.title = 'Location not found';
           }
         },
         (err) => {
@@ -39,5 +49,6 @@ export class LocationResultsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
+    this.routeChangeSubscription.unsubscribe();
   }
 }
