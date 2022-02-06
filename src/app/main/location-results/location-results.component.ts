@@ -27,6 +27,10 @@ export class LocationResultsComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * @param {string} params gives number to specific locations by id.
+   * Using subscription to get data from availableLocationsService, changing locationFound:boolean and title text.
+   */
   handleRouteChange(params) {
     this.dataSubscription = this.availableLocationsService
       .availableLocations(params['id'])
