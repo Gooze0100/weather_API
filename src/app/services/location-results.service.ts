@@ -15,7 +15,7 @@ export class LocationResultsService {
       alt: '0',
       tempunit: 'C',
       windunit: 'MS',
-      // TODO: by persons location
+      // TODO: by persons location =================================
       tz: 'Europe/Vilnius',
       lang: 'en',
     },
@@ -49,7 +49,6 @@ export class LocationResultsService {
           const data: Current[] = [];
           for (const property in resData) {
             data.push(resData[property]);
-            // console.log(data);
           }
           return data;
         })
@@ -67,13 +66,9 @@ export class LocationResultsService {
           const data: Daily[] = [];
           for (const property in resData) {
             for (const element of resData[property].slice(1)) {
-              // console.log(element);
-              // TODO padaryti kai duomenys yra gaunami supusti i array with new names tai pvz objekta ir jei tokia reiksme tai priskiti ta reiksme tik kitam key su geru pavadinimu
               data.push(element);
             }
           }
-          console.log(data);
-
           return data;
         })
       );

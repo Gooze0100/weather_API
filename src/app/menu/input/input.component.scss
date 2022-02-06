@@ -1,17 +1,87 @@
-.help-block {
-  color: crimson;
+nav {
+  &.fixed {
+    position: fixed;
+    width: 100%;
+    transition: 0.2s linear;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+  &.notFixed {
+    position: static;
+    transition: 0.2s linear;
+    top: -50px;
+  }
 }
-.fixed {
-  position: fixed;
-  width: 100%;
-  transition: 0.2s linear;
-  top: 0px;
-  left: 0;
-  right: 0;
-  z-index: 2;
+.form-box {
+  width: 25%;
+  transition: 0.3s all ease-out;
+  .flex-dir {
+    flex-direction: row;
+    input {
+      margin-right: 8px;
+    }
+  }
+  .help-block {
+    color: crimson;
+  }
+
+  .btn-custom {
+    background-color: #60b4d9;
+    color: white;
+  }
 }
-.notFixed {
-  position: static;
-  transition: 0.2s linear;
-  top: -50px;
+@media only screen and (max-width: 1400px) {
+  form.form-box {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  form.form-box {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  form.form-box {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  form.form-box {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  form.form-box {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  form.form-box {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  form.form-box {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  form.form-box {
+    div.flex-dir {
+      flex-direction: column;
+      input {
+        margin-bottom: 8px;
+        margin-right: 0;
+      }
+    }
+  }
 }

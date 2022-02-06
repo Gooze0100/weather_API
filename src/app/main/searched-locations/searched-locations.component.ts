@@ -17,6 +17,7 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
   private logConditionsSubscription: Subscription;
   public currentWeatherData: Array<Current> = [];
   public dailyWeatherData: Array<Daily> = [];
+  public locationName: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +46,7 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
       .subscribe(
         (res) => {
           this.currentWeatherData = res;
+          this.locationName = this.route.snapshot.params['name'];
           const data = JSON.stringify(res);
           const timestamp = JSON.stringify(Date.now());
           this.logConditionsSubscription = this.logUserDataService

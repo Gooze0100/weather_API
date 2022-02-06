@@ -12,6 +12,7 @@ import { AvailableLocationsService } from 'src/app/services/available-locations.
 export class LocationResultsComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription;
   public allData: Array<Countries>;
+  public title: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +24,12 @@ export class LocationResultsComponent implements OnInit, OnDestroy {
       .availableLocations(this.route.snapshot.params['id'])
       .subscribe(
         (data) => {
-          this.allData = data;
+          if (data.length > 0) {
+            this.title = true;
+            this.allData = data;
+          } else {
+            this.title = false;
+          }
         },
         (err) => {
           throw new Error(err);

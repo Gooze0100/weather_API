@@ -15,7 +15,7 @@ const routes: Routes = [
         component: LocationResultsComponent,
       },
       {
-        path: 'location/:id',
+        path: 'location/:id/:name',
         component: SearchedLocationsComponent,
       },
     ],

@@ -4,10 +4,14 @@
   [ngClass]="navBarFixed ? 'fixed' : 'notFixed'"
 >
   <div class="container-fluid">
-    <form class="d-flex flex-column" (ngSubmit)="onSubmit()" #form="ngForm">
-      <div class="d-flex flex-row">
+    <form
+      class="d-flex flex-column form-box"
+      (ngSubmit)="onSubmit()"
+      #form="ngForm"
+    >
+      <div class="d-flex flex-dir">
         <input
-          class="form-control me-2"
+          class="form-control"
           type="search"
           placeholder="Enter country name"
           required
@@ -19,7 +23,7 @@
           autocomplete="off"
         />
         <button
-          class="btn btn-success me-2"
+          class="btn btn-custom"
           type="submit"
           [disabled]="!country.valid"
           [routerLink]="['/search', country.value]"
@@ -32,10 +36,12 @@
         class="help-block mt-1"
       >
         <div *ngIf="country.errors?.['required']">
-          Country field cannot be empty!
+          <b> Country field cannot be empty! </b>
         </div>
         <div *ngIf="country.errors?.['maxlength']">
-          Country must be shorter then 30 characters long including spaces!
+          <b>
+            Country must be shorter then 30 characters long including spaces!
+          </b>
         </div>
       </div>
     </form>
