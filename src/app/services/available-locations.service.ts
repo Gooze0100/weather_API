@@ -17,6 +17,11 @@ export class AvailableLocationsService {
     },
   };
 
+  /**
+   * Returns data got from http request.
+   * @param {string} location gives number to specific locations by id.
+   * pipe is used with map to get just 5 locations in total.
+   */
   availableLocations(location: string) {
     return this.http
       .get(

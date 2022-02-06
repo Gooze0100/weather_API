@@ -25,6 +25,10 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
     private logUserDataService: LogUserService
   ) {}
 
+  /**
+   * Returns weekday in string type.
+   * @param {string} date need to give date in string type.
+   */
   getWeekday(date: string): string {
     const weekday = [
       'Sunday',
@@ -81,5 +85,3 @@ export class SearchedLocationsComponent implements OnInit, OnDestroy {
     this.dailyWeatherDataSubscription.unsubscribe();
   }
 }
-
-// "outputPath": "dist/meanStack",

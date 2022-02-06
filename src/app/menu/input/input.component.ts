@@ -30,6 +30,11 @@ export class InputComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * onSubmit subscribes to logUserDataService service - logKeywords function
+   * @throws {Error} when subscription is not successful
+   * Resets searchForm
+   */
   onSubmit(): void {
     if (this.searchForm.valid) {
       if (this.searchForm.value.country !== '') {

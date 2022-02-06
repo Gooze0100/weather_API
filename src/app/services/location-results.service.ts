@@ -15,8 +15,6 @@ export class LocationResultsService {
       alt: '0',
       tempunit: 'C',
       windunit: 'MS',
-      // TODO: by persons location =================================
-      tz: 'Europe/Vilnius',
       lang: 'en',
     },
     headers: {
@@ -38,6 +36,11 @@ export class LocationResultsService {
     },
   };
 
+  /**
+   * Returns data got from http request.
+   * @param {string} location gives number to specific locations by id.
+   * pipe is used with map to get current weather conditions for selected location
+   */
   getCurret(location: string) {
     return this.http
       .get(
@@ -55,6 +58,11 @@ export class LocationResultsService {
       );
   }
 
+  /**
+   * Returns data got from http request.
+   * @param {string} location gives number to specific locations by id.
+   * pipe is used with map to get 7 days forecast.
+   */
   getDaily(location: string) {
     return this.http
       .get(
