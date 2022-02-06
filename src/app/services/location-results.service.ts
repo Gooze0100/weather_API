@@ -21,7 +21,7 @@ export class LocationResultsService {
     },
     headers: {
       'x-rapidapi-host': 'foreca-weather.p.rapidapi.com',
-      'x-rapidapi-key': 'e0a5c4f116mshab070df83e65e2cp116f3ajsn0c48f01e48db',
+      'x-rapidapi-key': 'b0e243c22amsh47a6ae9176f0277p1f9d4bjsn1e99c968a794',
     },
   };
   private optionsDaily: Object = {
@@ -34,7 +34,7 @@ export class LocationResultsService {
     },
     headers: {
       'x-rapidapi-host': 'foreca-weather.p.rapidapi.com',
-      'x-rapidapi-key': 'e0a5c4f116mshab070df83e65e2cp116f3ajsn0c48f01e48db',
+      'x-rapidapi-key': 'b0e243c22amsh47a6ae9176f0277p1f9d4bjsn1e99c968a794',
     },
   };
 

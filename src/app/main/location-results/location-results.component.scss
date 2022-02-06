@@ -1,1 +1,46 @@
-// add some style
+.search-box {
+  width: 30%;
+  transition: 0.3s all ease-out;
+}
+
+@media screen and (max-width: 1200px) {
+  div.search-box {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  div.search-box {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  div.search-box {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  div.search-box {
+    width: 60%;
+    button.btn-box {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 590px) {
+  div.search-box {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div.search-box {
+    width: 100%;
+    button.btn-box {
+      font-size: 22px;
+    }
+  }
+}

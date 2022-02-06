@@ -1,9 +1,9 @@
-<div class="ms-4 mt-2">
+<div class="p-4">
   <h2 *ngIf="title">Locations found:</h2>
-  <div class="col-md-3">
+  <div class="search-box">
     <div class="list-group">
       <button
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action btn-box"
         *ngFor="let location of allData"
         [routerLink]="['/location', location.id, location.name]"
       >
